@@ -18,24 +18,38 @@ except sql.OperationalError:
 #? Clases
 class Tablero:
 	def __init__(self, partida, game_tab, lbl_texto):
-		self.partida = partida
-		self.game_tab = game_tab
-		self.lbl_texto = lbl_texto
+		self.partida 				= partida
+		self.game_tab 				= game_tab
+		self.lbl_texto 				= lbl_texto
+		self.n_barcos_disp 			= partida.n_barcos.get()
+		self.n_barcos_destruidos 	= partida.n_barcos.get()
+		self.mapa 					= []
 
 	def crear(self):
 		cols = tuple(range(1,self.partida.anchura.get()+1))
+		row_headers = "ABCDEFGHIJ"[0:self.partida.altura.get()]
+
+		for col in cols:
+			this_row = []
+			for row in row_headers:
+				this_row.append(f"{col}{row}")
+			self.mapa.append(this_row)
+		
+
 		tablero = ttk.Treeview(self.game_tab, columns=cols, show="tree headings")
 		for col in cols:
 			tablero.heading(col, text=col, anchor="center")
 
-		row_headers = "ABCDEFGHIJ"[0:self.partida.altura.get()]
 		for row in row_headers:
-			tablero.insert("",tk.END, text=row)
+			tablero.insert("",tk.END, iid=row ,text=row)
 
 		lbl_tablero = tk.Label(self.game_tab, text=self.lbl_texto)
 
 		lbl_tablero.pack()
 		tablero.pack()
+
+	def poner_barco(self): #TODO: Alterar el atributo mapa
+		pass
 class Barco:
 	def __init__(self):
 		tamano = []
@@ -63,6 +77,7 @@ def create_game_tab():
 	tablero_computadora = Tablero(partida_config,game_tab,"Tablero enemigo").crear()
 	tablero_jugador = Tablero(partida_config,game_tab,"Tu tablero").crear()
 
+	btn_poner_barco = tk.Button(game_tab, text="Poner barco")
 
 
 #? Opciones de ventana
