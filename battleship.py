@@ -400,7 +400,7 @@ for i, (txt, var) in enumerate([("Columnas (8-10):", v_cols),
 tk.Button(cfg, text="▶ Iniciar", font=("Courier New",10,"bold"),
         bg="#2176ae", fg="white", relief="flat", padx=12, pady=4,
         cursor="hand2", command=iniciar).grid(row=0, column=6, padx=16)
-tk.Button(cfg, text="↺ Rotar [clic der]", font=("Courier New",9),
+tk.Button(cfg, text="Rotar [clic der]", font=("Courier New",9),
         bg="#0d1b2a", fg="#4fc3f7", relief="flat", cursor="hand2",
         command=rotar).grid(row=0, column=7, padx=4)
 lbl_err = tk.Label(cfg, text="", font=("Courier New",9), bg="#0d1b2a", fg="#e63946")
